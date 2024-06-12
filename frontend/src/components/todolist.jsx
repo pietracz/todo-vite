@@ -10,18 +10,32 @@ function TodoList() {
     setNewTask(event.target.value);
   }
 
+  function fetchAllData() {
+    fetch("http://localhost:3002/tasks")
+      .then((response) => response.json())
+      .then((data) => setTasks(data))
+      .catch((error) => console.error("Fehler beim API-Aufruf", error));
+  }
+  useEffect(() => {
+    fetchAllData();
+  }, []);
+
   function addTask() {
     if (newTask !== "") {
-      setTasks(() => [...tasks, newTask]);
-      setNewTask("");
+      fetch("http://localhost:3002/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ task: newTask }),
+      });
+      fetchAllData();
     }
   }
   function removeTask(index) {
     const updatedTasks = tasks.filter((_, i) => i !== index); // quasi das gleiche, nur anders geschrieben
     setTasks(updatedTasks);
   }
-
-  function archiveTask() {}
 
   function moveTaskUp(index) {
     if (index > 0) {
@@ -55,6 +69,18 @@ function TodoList() {
               {tasks.map((task, index) => (
                 <li key={index}>
                   <span className="text">{task}</span>
+                  <button
+                    className="up-button"
+                    onClick={() => moveTaskUp(index)}
+                  >
+                    UP
+                  </button>
+                  <button
+                    className="down-button"
+                    onClick={() => moveTaskDown(index)}
+                  >
+                    DOWN
+                  </button>
                   <button className="remove" onClick={() => removeTask(index)}>
                     X
                   </button>
