@@ -1,0 +1,106 @@
+:root {
+  --primary-color: #fefeff;
+  --secondary-color: #d6efff;
+  --tertiary-color: #fed18c;
+  --text-color: #584b53;
+  --text-size: 1em;
+  --header-color: #0d1b2a;
+  --header-size: 3em;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--primary-color);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: var(--header-color);
+}
+
+p,
+a,
+ul {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  text-transform: uppercase;
+  height: 120px;
+  background-color: var(--secondary-color);
+}
+
+nav h1 {
+  justify-self: start;
+  font-size: var(--header-size);
+}
+
+nav p {
+  justify-self: start;
+  font-size: var(--text-size);
+}
+
+nav ul {
+  display: flex;
+  justify-self: end;
+  list-style: none;
+  gap: 30px;
+}
+
+main {
+  margin-bottom: auto;
+}
+
+.input {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 75px;
+}
+
+.input-field {
+  width: 200px;
+  height: auto;
+}
+
+.add {
+  width: 75px;
+  height: auto;
+}
+
+footer {
+  display: grid;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: var(--secondary-color);
+}
