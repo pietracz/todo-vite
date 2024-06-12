@@ -11,7 +11,7 @@ function TodoList() {
   }
 
   function fetchAllData() {
-    fetch("http://localhost:3002/tasks")
+    fetch("http://localhost:5000/tasks")
       .then((response) => response.json())
       .then((data) => setTasks(data))
       .catch((error) => console.error("Fehler beim API-Aufruf", error));
@@ -22,7 +22,7 @@ function TodoList() {
 
   function addTask() {
     if (newTask !== "") {
-      fetch("http://localhost:3002/tasks", {
+      fetch("http://localhost:5000/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,6 +70,18 @@ function TodoList() {
               {tasks.map((task, index) => (
                 <li key={index}>
                   <span className="text">{task}</span>
+                  <button
+                    className="up-button"
+                    onClick={() => moveTaskUp(index)}
+                  >
+                    UP
+                  </button>
+                  <button
+                    className="down-button"
+                    onClick={() => moveTaskDown(index)}
+                  >
+                    DOWN
+                  </button>
                   <button className="remove" onClick={() => removeTask(index)}>
                     X
                   </button>
